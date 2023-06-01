@@ -1,3 +1,7 @@
+//This code isn't perfect tho
+console.log("Help me waaa")
+
+
 const fs = require("fs")
 const path = require("path")
 
