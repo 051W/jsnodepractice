@@ -5,14 +5,14 @@ const path = require("path")
 
 //DEFINING VARS______________________________________
 //defining variables on file and folder names:
-const Folder_res= "res files"
-const file_lorem = "Lorem.txt"
-const file_copy = "Copy"
+const folderRes= "res_files"
+const fileLorem = "Lorem.txt"
+const fileCopy = "Copy"
 
-const textFile = path.join(__dirname, Folder_res, file_lorem)
-const newTxtFile = path.join(__dirname, Folder_res, file_copy)
+const textFile = path.join(__dirname, folderRes, fileLorem)
+const newTxtFile = path.join(__dirname, folderRes, fileCopy)
 
-const newFileMessage = "Following text originates from " + file_lorem + ":\n"
+const newFileMessage = "Following text originates from " + fileLorem + ":\n"
 
 //FUNCTIONS_________________________________________
 function ifError(err) {
@@ -36,12 +36,12 @@ function errorhandling (error, contentOfFile) {
     fs.appendFile(newTxtFile, toInput, (err)=>{ 
         
         console.log("Creating file now...")//solely for testing 
+
         ifError(err)
+
         console.log("File has been created.")//solely for testing 
 
-        
-
-    })
+    })//this is where I came to understand what callBack Hell means. Callbacks within callbacks to the power of infinity!
 
 }
 
