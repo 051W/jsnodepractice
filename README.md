@@ -1,2 +1,2 @@
 # jsnodepractice
-nodeja practice
+Just practicing NODEJS
