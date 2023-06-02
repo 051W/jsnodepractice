@@ -1,49 +1,60 @@
-//IMPORTING MODULES______________________________
-//importing modules
-const fs = require("fs")
-const path = require("path")
+//__________________________________________________
+//IMPORTING MODULES & DECLARING VARIABLES
 
-//DEFINING VARS______________________________________
-//defining variables on file and folder names:
-const folderRes= "res_files"
+const path = require('path')
+const fs = require('fs')
+const fsPromises = require('fs').promises
+
+const folderRes = "res_files"
 const fileLorem = "Lorem.txt"
-const fileCopy = "Copy"
+const fileNewTxt = "result.txt"
 
-const textFile = path.join(__dirname, folderRes, fileLorem)
-const newTxtFile = path.join(__dirname, folderRes, fileCopy)
+const filePathLorem = path.join(__dirname, folderRes, fileLorem)
+const filePathNew = path.join(__dirname, folderRes, fileNewTxt)
 
-const newFileMessage = "Following text originates from " + fileLorem + ":\n"
+const newText = "Extracted content from " + fileLorem + " file:\n"
 
-//FUNCTIONS_________________________________________
-function ifError(err) {
-    if (err) throw err
+//__________________________________________________
+//CREATING FUCTIONS
+function errorLog(error) {
+    console.error(error)
 }
 
+//__________________________________________________
+//USING FSPROMISES FOR CRUD OPS
+const readFile = async() => {
+    try{
 
-//defining error callback function
-function errorhandling (error, contentOfFile) {
-
-    console.log("Reading file now...")//solely for testing 
-    
-    ifError(error)
-    fileContent = contentOfFile.toString()
-    
-    console.log("File has been read.")//solely for testing 
-    
-    toInput = newFileMessage + fileContent
-
-    //attempting to create a new file and add content in contentOfFile
-    fs.appendFile(newTxtFile, toInput, (err)=>{ 
+        //assign content of file to fileContent
+        const fileContent = await fsPromises.readFile(filePathLorem, 'utf-8')
+        console.log( fileLorem + " file has been read.")
         
-        console.log("Creating file now...")//solely for testing 
+        //creates and adds content to new file
+        //await fsPromises.appendFile(filePathNew, fileContent)
+        
+        //toggle between deleting exisitng file or creating new file:
+        //checks if file exists:
+        if (fs.existsSync(filePathNew)) {
+            
+            //if file exists, delete file
+            console.log( fileNewTxt + " file has been deleted.")
+            await fsPromises.unlink(filePathNew)
+            
+        } else if (!fs.existsSync(filePathNew)) {
+            
+            //if file does not exist, create and append content
+            console.log( fileNewTxt + " file created.")
+            const newContent = newText + fileContent
+            await fsPromises.appendFile(filePathNew, newContent)
+            console.log( "Content added to " + fileNewTxt + " file.")
+            
+        
+        }
 
-        ifError(err)
-
-        console.log("File has been created.")//solely for testing 
-
-    })//this is where I came to understand what callBack Hell means. Callbacks within callbacks to the power of infinity!
-
+    } catch (err) {
+        //log error, if any
+        errorLog(err)
+    }
 }
 
-//EXECUTION___________________________________________
-fs.readFile(textFile, 'utf-8', errorhandling)
+readFile()
