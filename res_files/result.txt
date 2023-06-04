@@ -1,4 +1,0 @@
-Extracted content from Lorem.txt file:
-**Start of originalTextfile.txt**
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tellus eros, pellentesque vel eros at, scelerisque tristique odio. Nunc eleifend facilisis massa vel placerat.
-**End of originalTextfile.txt**
