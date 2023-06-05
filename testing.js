@@ -5,6 +5,7 @@ const path = require('path')
 const express = require("express")
 
 const app = express()
+
 const folderRes = "res_files"
 const fileLorem = "Lorem.txt"
 const fileNewTxt = "result.txt"
@@ -20,6 +21,9 @@ const filePathNew = path.join(__dirname, folderRes, fileNewTxt)
 //__________________________________________________
 //EXPRESSJS PRACTICE
 
+//needed view engine to output a ejs file which is similar to html
+app.set("view engine", "ejs")
+
 //this is great for displaying specific message when user goes to certain page.
 app.get("/", (req, res) => {
 
@@ -27,13 +31,13 @@ app.get("/", (req, res) => {
     
     //.send is usually used for testing purposes:
     //res.send("This should display on the browser.") 
+    //console.log("status sent")
     
     //sends status of page, in this case, an error:
     //res.sendStatus(404) 
     
     //sends status as well as a nice customzed emssage as well:
-    res.status(404).send("ERROR 404: File not found.")
-    console.log("status sent")
+    //res.status(404).send("ERROR 404: File not found.")
     
     //have no idea what json does tbh, but it was on a tutorial:
     //>>>>>>>>>>!REMINDER! lookin into it, miso<<<<<<<<<<<<
@@ -43,6 +47,12 @@ app.get("/", (req, res) => {
     //(this will not work if theres other res methods active. ) 
     //res.download(filePathLorem)
     //console.log("download prompted")
+
+    //renders a ejs file
+    res.render('index', { username: "//username//" })
 })
 
-app.listen(1234)
+const userRouter = require("./routes/users")
+app.use("/user", userRouter)
+
+app.listen(3000)
