@@ -24,6 +24,9 @@ const filePathNew = path.join(__dirname, folderRes, fileNewTxt)
 //needed view engine to output a ejs file which is similar to html
 app.set("view engine", "ejs")
 
+//allows ejs to use files in public folder
+app.use(express.static("public"));
+
 //this is great for displaying specific message when user goes to certain page.
 app.get("/", (req, res) => {
 
