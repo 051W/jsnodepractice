@@ -24,14 +24,17 @@ const filePathNew = path.join(__dirname, folderRes, fileNewTxt)
 //needed view engine to output a ejs file which is similar to html
 app.set("view engine", "ejs")
 
-//allows ejs to use files in public folder
+//accesses te public folder and allows index.ejs to link to other files in the public folder
 app.use(express.static("public"));
 
 //this is great for displaying specific message when user goes to certain page.
 app.get("/", (req, res) => {
 
     console.log("This should display on the terminal as the page loads.")
-    
+
+    //renders a ejs file
+    res.render('index', { username: "//username//" })
+
     //.send is usually used for testing purposes:
     //res.send("This should display on the browser.") 
     //console.log("status sent")
@@ -42,8 +45,8 @@ app.get("/", (req, res) => {
     //sends status as well as a nice customzed emssage as well:
     //res.status(404).send("ERROR 404: File not found.")
     
+    //!REMINDER! lookin into this:
     //have no idea what json does tbh, but it was on a tutorial:
-    //>>>>>>>>>>!REMINDER! lookin into it, miso<<<<<<<<<<<<
     //res.json({message: "error"})
     
     //will allow user to download content secified with path. 
@@ -51,8 +54,6 @@ app.get("/", (req, res) => {
     //res.download(filePathLorem)
     //console.log("download prompted")
 
-    //renders a ejs file
-    res.render('index', { username: "//username//" })
 })
 
 const userRouter = require("./routes/users")
