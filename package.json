@@ -2,16 +2,18 @@
   "name": "jsnodepractice",
   "version": "1.0.0",
   "description": "Just practicing NodeJS\r There are bound to be some headache inducing codes as well as some incredulous usage of such codes.\r This is due to the Frankensteinian nature of the creator of this repository.",
-  "main": "testing.js",
+  "main": "app.js",
   "scripts": {
-    "devStart": "nodemon testing.js"
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "date-fns": "^2.30.0",
     "ejs": "^3.1.9",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
