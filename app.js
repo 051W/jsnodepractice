@@ -1,5 +1,7 @@
 //__________________________________________________
 //IMPORTING MODULES & DECLARING VARIABLES
+const logEvents = require("./logEvents")
+const EventEmitter = require('events')
 
 const path = require('path')
 const express = require("express")
@@ -33,7 +35,9 @@ app.get("/", (req, res) => {
     console.log("This should display on the terminal as the page loads.")
 
     //renders a ejs file
-    res.render('index', { username: "//username//" })
+    res.render('index', /* { username: "//username//" } */)
+
+
 
     //.send is usually used for testing purposes:
     //res.send("This should display on the browser.") 
@@ -41,13 +45,8 @@ app.get("/", (req, res) => {
     
     //sends status of page, in this case, an error:
     //res.sendStatus(404) 
-    
     //sends status as well as a nice customzed emssage as well:
     //res.status(404).send("ERROR 404: File not found.")
-    
-    //!REMINDER! lookin into this:
-    //have no idea what json does tbh, but it was on a tutorial:
-    //res.json({message: "error"})
     
     //will allow user to download content secified with path. 
     //(this will not work if theres other res methods active. ) 
@@ -57,6 +56,7 @@ app.get("/", (req, res) => {
 })
 
 const userRouter = require("./routes/users")
+const { EventEmitter } = require("stream")
 app.use("/user", userRouter)
 
 app.listen(3000)
