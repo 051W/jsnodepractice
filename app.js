@@ -1,7 +1,5 @@
 //__________________________________________________
 //IMPORTING MODULES & DECLARING VARIABLES
-const logEvents = require("./logEvents")
-const EventEmitter = require('events')
 
 const path = require('path')
 const express = require("express")
@@ -14,11 +12,26 @@ const fileNewTxt = "result.txt"
 
 const filePathLorem = path.join(__dirname, folderRes, fileLorem)
 const filePathNew = path.join(__dirname, folderRes, fileNewTxt)
-
-//const newText = "Extracted content from " + fileLorem + " file:\n"
-
 //__________________________________________________
-//CREATING FUCTIONS
+//NODE EVENT PRACTICE
+
+//IMPORTING MODULES
+//const logEvents = require("./logEvents")
+const EventEmitter = require('node:events') //could simply be 'events' too. EventEmitter is now a class, not an object.
+const emitter = new EventEmitter() //now, it's an object, methods in this object can be used.
+
+//adding function to test run when an event triggers
+function responseToEvent(param1, param2) {
+    console.log(`The events have been triggered, and thus this respose with ${param1} ${param2}`)
+}
+
+//adds a listner, that listens for a specific even emitted to trigger a response.
+emitter.on("event emitted", (param1, param2) => {//this function cannot be replaced with the func above, responseToEvent.
+    responseToEvent(param1, param2) //might be helpful if function contains longer code that repeats itself.
+})
+
+emitter.emit("event emitted", "additional", "parameters")
+
 
 //__________________________________________________
 //EXPRESSJS PRACTICE
@@ -32,12 +45,9 @@ app.use(express.static("public"));
 //this is great for displaying specific message when user goes to certain page.
 app.get("/", (req, res) => {
 
-    console.log("This should display on the terminal as the page loads.")
-
     //renders a ejs file
     res.render('index', /* { username: "//username//" } */)
-
-
+    console.log("This should display on the terminal as the page loads.")
 
     //.send is usually used for testing purposes:
     //res.send("This should display on the browser.") 
@@ -56,7 +66,7 @@ app.get("/", (req, res) => {
 })
 
 const userRouter = require("./routes/users")
-const { EventEmitter } = require("stream")
+
 app.use("/user", userRouter)
 
 app.listen(3000)
