@@ -26,6 +26,6 @@ const logEvents =async(message) => {
     }
 }
 
-logEvents("second message")
+logEvents("*message here*")
 
 module.exports = logEvents
