@@ -3,7 +3,6 @@
 
 const path = require('path')
 const express = require("express")
-
 const app = express()
 
 const folderRes = "res_files"
@@ -12,25 +11,6 @@ const fileNewTxt = "result.txt"
 
 const filePathLorem = path.join(__dirname, folderRes, fileLorem)
 const filePathNew = path.join(__dirname, folderRes, fileNewTxt)
-//__________________________________________________
-//NODE EVENT PRACTICE
-
-//IMPORTING MODULES
-//const logEvents = require("./logEvents")
-const EventEmitter = require('node:events') //could simply be 'events' too. EventEmitter is now a class, not an object.
-const emitter = new EventEmitter() //now, it's an object, methods in this object can be used.
-
-//adding function to test run when an event triggers
-function responseToEvent(param1, param2) {
-    console.log(`The events have been triggered, and thus this respose with ${param1} ${param2}`)
-}
-
-//adds a listner, that listens for a specific even emitted to trigger a response.
-emitter.on("event emitted", (param1, param2) => {//this function cannot be replaced with the func above, responseToEvent.
-    responseToEvent(param1, param2) //might be helpful if function contains longer code that repeats itself.
-})
-
-emitter.emit("event emitted", "additional", "parameters")
 
 
 //__________________________________________________

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- //NOTE TO SELF: line below is made possible by accessing styles.css from app.js(formerly; testing.js)-->
+    <link rel="stylesheet" href="/assets/styles.css"> 
+
+    <title>MySandBox</title>
+</head>
+<body>
+    <h1><span id="title" onclick="window.location.href = '/'">Sandbox</span></h1>
+    <h1>Registration Form</h1>
+
+    <p>Registration page under construction... please come back later.</p>
+    <p>Already have an account? <a href='/user/login'>Log in here.</a></p>
+    <!--registration form here-->
+
+    <form id="login">
+
+        <fieldset>
+
+            <label for="loginEmail" id="loginEmail-label">Email: <input id="loginEmail" type="email" placeholder="Enter your email" required /></label>
+            <label for="password" id="password-label">Password: <input id="loginEmail" type="password" placeholder="Enter your password" required /></label>
+
+            <button class="button">Register</button>
+
+
+        </fieldset>
+
+      </form>
+
+</body>
+</html>
