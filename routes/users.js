@@ -1,41 +1,19 @@
 const express = require("express")
 const router = express.Router()
 
-router.get("/", (req, res) => {
-    console.log("navigating the user/new route.")
-    res.send("user page")
+router.get("/login", (req, res) => {
+    console.log("navigating the /login route.")
+    res.render('login')
 })
 
-router.get("/new", (req, res) => {
-    console.log("navigating the user/new route.")
-    res.send("user registration form")
+router.get("/register", (req, res) => {
+    console.log("navigating the /register route.")
+    res.render('register')
 })
 
-router.post("/", (req, res) => {
-    res.send("Create user")
-})
-
-/*  //This route usually goes at the bottom, because it can match with any other routes above and we don't want that.
-router.get("/:id", (req,res) => {
-    res.send(`Get user with ID ${req.params.id}`)
-})
-router.put("/:id", (req,res) => {
-    res.send(`/Update user with ID ${req.params.id}`)
-})
-router.delete("/:id", (req,res) => {
-    res.send(`Delete user with ID ${req.params.id}`)
-})  */
-
-//Works exactly the same as the commented code out above. This one negates the repetition of "/:id" and is a chained code
-router.route("/:id")
-.get((req,res) => {
-    res.send(`Get user with ID ${req.params.id}`)
-})
-.put((req,res) => {
-    res.send(`/Update user with ID ${req.params.id}`)
-})
-.delete((req,res) => {
-    res.send(`Delete user with ID ${req.params.id}`)
+router.get("/dashboard", (req, res) => {
+    console.log("navigating the /dashboard route.")
+    res.render('user_dashboard')
 })
 
 module.exports = router

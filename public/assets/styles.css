@@ -1,6 +1,11 @@
 body {
-    display: block;
-    text-align: center;
-    background-color: #d7d9e0;
-    font-family: Bahnschrift Light;
-  }
+  display: block;
+  text-align: center;
+  background-color: #d7d9e0;
+  font-family: Bahnschrift Light;
+}
+
+#title{
+  cursor: pointer;
+  width: auto;
+}
