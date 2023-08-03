@@ -5,12 +5,17 @@ const path = require('path')
 const express = require("express")
 const app = express()
 
+const port = 3000
+
 const folderRes = "res_files"
 const fileLorem = "Lorem.txt"
 const fileNewTxt = "result.txt"
 
 const filePathLorem = path.join(__dirname, folderRes, fileLorem)
 const filePathNew = path.join(__dirname, folderRes, fileNewTxt)
+
+//__________________________________________________
+
 
 
 //__________________________________________________
@@ -49,4 +54,4 @@ const userRouter = require("./routes/users")
 
 app.use("/user", userRouter)
 
-app.listen(3000)
+app.listen(port)
