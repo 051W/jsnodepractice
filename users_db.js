@@ -34,7 +34,7 @@ const User = mongoose.model("user", userSchema)
 //__________________________________________________
 //Adding new user
 
-//adding new document
+/* //adding new document
 const testUser = new User({
     name: "testingenv",
     password: "miso051w",
@@ -43,7 +43,7 @@ const testUser = new User({
 
 //saving new document
 testUser.save();
-
+ */
 //__________________________________________________
 //Retrieving user:
 
